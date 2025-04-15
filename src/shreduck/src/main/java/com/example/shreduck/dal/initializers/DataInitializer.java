@@ -9,6 +9,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Component
 public class DataInitializer implements ApplicationRunner {
@@ -23,20 +25,22 @@ public class DataInitializer implements ApplicationRunner {
 
     private void createDefaultMembers() {
         if (memberRepository.count() != 0) return;
-        Member admin = Member.builder()
-                .email("admin@example.com")
-                .password(passwordEncoder.encode("admin"))
-                .pseudo("admin")
-                .memberRole(MemberRole.ADMIN)
-                .build();
-        Member member = Member.builder()
-                .email("member@example.com")
-                .password(passwordEncoder.encode("member"))
-                .pseudo("member")
-                .memberRole(MemberRole.MEMBER)
-                .build();
-        memberRepository.saveAndFlush(admin);
-        memberRepository.saveAndFlush(member);
+        memberRepository.saveAllAndFlush(List.of(
+                Member
+                        .builder()
+                        .email("admin@example.com")
+                        .memberRole(MemberRole.ADMIN)
+                        .password(passwordEncoder.encode("admin"))
+                        .pseudo("admin")
+                        .build(),
+                Member
+                        .builder()
+                        .email("member@example.com")
+                        .memberRole(MemberRole.MEMBER)
+                        .password(passwordEncoder.encode("member"))
+                        .pseudo("member")
+                        .build()
+        ));
     }
 
 }
