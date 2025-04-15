@@ -1,7 +1,7 @@
 package com.example.shreduck.api.controllers;
 
 import com.example.shreduck.api.models.exercise.dtos.ExerciseDto;
-import com.example.shreduck.api.models.exercise.forms.ExerciseCreateForm;
+import com.example.shreduck.api.models.exercise.forms.ExerciseForm;
 import com.example.shreduck.bll.services.ExerciseService;
 import com.example.shreduck.dl.entities.Exercise;
 import jakarta.validation.Valid;
@@ -21,7 +21,7 @@ public class ExerciseController {
 
     @PostMapping("")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public ResponseEntity<ExerciseDto> create(@RequestBody @Valid ExerciseCreateForm form) {
+    public ResponseEntity<ExerciseDto> create(@RequestBody @Valid ExerciseForm form) {
         Exercise exercise = exerciseService.create(form.toExercise());
         return ResponseEntity.ok(ExerciseDto.fromExercise(exercise));
     }
@@ -35,8 +35,10 @@ public class ExerciseController {
 
     @GetMapping("")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MEMBER')")
-    public ResponseEntity<List<ExerciseDto>> export() {
-        List<Exercise> exerciseList = exerciseService.export();
+    public ResponseEntity<List<ExerciseDto>> export(@RequestParam(required = false) String query) {
+        List<Exercise> exerciseList = (query == null || query.isBlank())
+                ? exerciseService.export()
+                : exerciseService.filter(query);
         List<ExerciseDto> exerciseDtoList = exerciseList.stream()
                 .map(ExerciseDto::fromExercise)
                 .toList();
