@@ -10,7 +10,8 @@ public record AuthRegisterForm(
 ) {
 
     public Member toMember() {
-        return Member.builder()
+        return Member
+                .builder()
                 .email(email)
                 .password(password)
                 .pseudo(pseudo)

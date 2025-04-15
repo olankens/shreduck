@@ -12,7 +12,8 @@ public record AuthSessionDto(
 ) {
 
     public static AuthSessionDto fromMember(Member member) {
-        return AuthSessionDto.builder()
+        return AuthSessionDto
+                .builder()
                 .id(member.getId())
                 .memberRole(member.getMemberRole())
                 .pseudo(member.getPseudo())
