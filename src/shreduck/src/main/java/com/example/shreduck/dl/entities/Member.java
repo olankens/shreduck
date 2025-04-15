@@ -1,10 +1,7 @@
 package com.example.shreduck.dl.entities;
 
 import com.example.shreduck.dl.enums.MemberRole;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,10 +16,14 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Entity
-public class Member extends BaseEntity<Long> implements UserDetails {
+public class Member implements UserDetails {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
