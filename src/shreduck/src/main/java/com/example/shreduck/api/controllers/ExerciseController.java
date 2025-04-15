@@ -23,7 +23,6 @@ public class ExerciseController {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<ExerciseDto> create(@RequestBody @Valid ExerciseCreateForm form) {
         Exercise exercise = exerciseService.create(form.toExercise());
-        // return new ResponseEntity<>(ExerciseDto.fromExercise(exercise), HttpStatus.OK);
         return ResponseEntity.ok(ExerciseDto.fromExercise(exercise));
     }
 
@@ -51,7 +50,6 @@ public class ExerciseController {
             @RequestBody @Valid ExerciseCreateForm form
     ) {
         Exercise exercise = exerciseService.update(id, form.toExercise());
-        // return new ResponseEntity<>(ExerciseDto.fromExercise(exercise), HttpStatus.OK);
         return ResponseEntity.ok(ExerciseDto.fromExercise(exercise));
     }
 
