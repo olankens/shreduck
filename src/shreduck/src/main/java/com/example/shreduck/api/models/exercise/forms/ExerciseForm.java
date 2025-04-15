@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
-public record ExerciseCreateForm(
+public record ExerciseForm(
         @NotBlank String name,
         @NotBlank String description,
         List<ExerciseTarget> exerciseTargets,

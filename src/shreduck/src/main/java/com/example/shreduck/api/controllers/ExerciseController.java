@@ -49,7 +49,7 @@ public class ExerciseController {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<ExerciseDto> update(
             @PathVariable Long id,
-            @RequestBody @Valid ExerciseCreateForm form
+            @RequestBody @Valid ExerciseForm form
     ) {
         Exercise exercise = exerciseService.update(id, form.toExercise());
         return ResponseEntity.ok(ExerciseDto.fromExercise(exercise));
