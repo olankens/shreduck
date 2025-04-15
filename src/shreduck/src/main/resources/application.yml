@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: shreduck
+  cache:
+    type: caffeine
   datasource:
     url: jdbc:postgresql://localhost:5432/shreduck
     username: master
