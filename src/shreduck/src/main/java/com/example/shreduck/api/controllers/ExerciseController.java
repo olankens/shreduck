@@ -24,7 +24,7 @@ public class ExerciseController {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<ExerciseDto> create(
-            @RequestPart("form") @Valid ExerciseForm form,
+            @RequestPart @Valid ExerciseForm form,
             @RequestPart(value = "media", required = false) MultipartFile file
     ) {
         Exercise exercise = exerciseService.create(form.toExercise(), file);
@@ -54,7 +54,7 @@ public class ExerciseController {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<ExerciseDto> update(
             @PathVariable Long id,
-            @RequestPart("form") @Valid ExerciseForm form,
+            @RequestPart @Valid ExerciseForm form,
             @RequestPart(value = "media", required = false) MultipartFile file
     ) {
         Exercise exercise = exerciseService.update(id, form.toExercise(), file);
