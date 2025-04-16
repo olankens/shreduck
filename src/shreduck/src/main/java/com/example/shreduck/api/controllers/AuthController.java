@@ -9,6 +9,7 @@ import com.example.shreduck.dl.entities.Member;
 import com.example.shreduck.il.utils.JwtUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,8 @@ public class AuthController {
     private final AuthService authService;
     private final JwtUtil jwtUtil;
 
+    @PostMapping(value = "login", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("isAnonymous()")
-    @PostMapping("/login")
     public ResponseEntity<AuthTokenDto> login(@RequestPart @Valid AuthLoginForm form) {
         Member member = authService.login(form.pseudo(), form.password());
         String token = jwtUtil.generateToken(member);
@@ -31,8 +32,8 @@ public class AuthController {
         return ResponseEntity.ok(authTokenDto);
     }
 
+    @PostMapping(value = "register", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("isAnonymous()")
-    @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestPart @Valid AuthRegisterForm form) {
         authService.register(form.toMember());
         return ResponseEntity.noContent().build();
