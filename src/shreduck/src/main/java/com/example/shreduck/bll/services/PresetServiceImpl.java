@@ -1,10 +1,15 @@
 package com.example.shreduck.bll.services;
 
+import com.example.shreduck.api.models.preset.forms.PresetForm;
+import com.example.shreduck.dal.repositories.ExerciseRepository;
+import com.example.shreduck.dal.repositories.PresetExerciseRepository;
 import com.example.shreduck.dal.repositories.PresetRepository;
 import com.example.shreduck.dl.entities.Member;
 import com.example.shreduck.dl.entities.Preset;
+import com.example.shreduck.dl.entities.PresetExercise;
 import com.example.shreduck.dl.enums.MemberRole;
 import com.example.shreduck.dl.enums.PresetType;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +19,8 @@ import java.util.List;
 @Service
 public class PresetServiceImpl implements PresetService {
 
+    private final ExerciseRepository exerciseRepository;
+    private final PresetExerciseRepository presetExerciseRepository;
     private final PresetRepository presetRepository;
 
     @Override
@@ -44,6 +51,27 @@ public class PresetServiceImpl implements PresetService {
     @Override
     public List<Preset> export(Member current) {
         return presetRepository.findAllByMember(current);
+    }
+
+    @Override
+    @Transactional
+    public Preset update(Long id, PresetForm form, Member current) {
+        Preset preset = presetRepository.findById(id).orElseThrow();
+        if (!preset.getMember().getId().equals(current.getId())) {
+            throw new SecurityException("You do not have permission to update this preset");
+        }
+        preset.setName(form.name());
+        preset.setPresetType(form.presetType());
+        presetExerciseRepository.deleteAllByPreset(preset);
+        List<PresetExercise> newExercises = form.presetExercises().stream()
+                .map(pef -> PresetExercise.builder()
+                        .exercise(exerciseRepository.findById(pef.exerciseId()).orElseThrow())
+                        .position(pef.position())
+                        .preset(preset)
+                        .build())
+                .toList();
+        presetExerciseRepository.saveAll(newExercises);
+        return presetRepository.save(preset);
     }
 
 }

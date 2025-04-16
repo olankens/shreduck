@@ -5,8 +5,11 @@ import com.example.shreduck.dl.enums.PresetType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 public record PresetForm(
         @NotBlank String name,
+        List<PresetExerciseForm> presetExercises,
         @NotNull PresetType presetType
 ) {
 

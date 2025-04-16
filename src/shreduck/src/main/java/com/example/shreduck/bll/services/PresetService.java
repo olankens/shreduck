@@ -1,5 +1,6 @@
 package com.example.shreduck.bll.services;
 
+import com.example.shreduck.api.models.preset.forms.PresetForm;
 import com.example.shreduck.dl.entities.Member;
 import com.example.shreduck.dl.entities.Preset;
 
@@ -14,5 +15,7 @@ public interface PresetService {
     Preset detail(Long id, Member current);
 
     List<Preset> export(Member current);
+
+    Preset update(Long id, PresetForm form, Member current);
 
 }

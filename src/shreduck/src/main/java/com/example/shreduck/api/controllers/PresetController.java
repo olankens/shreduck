@@ -11,6 +11,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping(value = "/preset")
 @RequiredArgsConstructor
 @RestController
@@ -30,7 +32,7 @@ public class PresetController {
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MEMBER')")
-    public ResponseEntity<PresetDto> delete(
+    public ResponseEntity<Void> delete(
             @PathVariable Long id,
             @AuthenticationPrincipal Member current
     ) {
@@ -46,6 +48,29 @@ public class PresetController {
     ) {
         Preset preset = presetService.detail(id, current);
         return ResponseEntity.ok(PresetDto.fromPreset(preset));
+    }
+
+    @GetMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MEMBER')")
+    public ResponseEntity<List<PresetDto>> export(
+            @AuthenticationPrincipal Member current
+    ) {
+        List<Preset> presetList = presetService.export(current);
+        List<PresetDto> presetDtoList = presetList.stream()
+                .map(PresetDto::fromPreset)
+                .toList();
+        return ResponseEntity.ok(presetDtoList);
+    }
+
+    @PutMapping("{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MEMBER')")
+    public ResponseEntity<PresetDto> update(
+            @PathVariable Long id,
+            @RequestBody PresetForm form,
+            @AuthenticationPrincipal Member current
+    ) {
+        Preset updated = presetService.update(id, form, current);
+        return ResponseEntity.ok(PresetDto.fromPreset(updated));
     }
 
 }
