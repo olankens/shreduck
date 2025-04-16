@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -23,7 +24,7 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public Exercise create(Exercise exercise, MultipartFile media) {
         if (media != null && !media.isEmpty()) {
-            String mediaPath = handleMedia(media, exercise.getName());
+            String mediaPath = handleMedia(media);
             exercise.setMedia(mediaPath);
         }
         return exerciseRepository.save(exercise);
@@ -56,13 +57,24 @@ public class ExerciseServiceImpl implements ExerciseService {
         updated.setDescription(exercise.getDescription());
         updated.setExerciseTargets(exercise.getExerciseTargets());
         if (media != null && !media.isEmpty()) {
-            String mediaPath = handleMedia(media, exercise.getName());
+            if (updated.getMedia() != null) {
+                File oldFile = new File(updated.getMedia());
+                if (oldFile.exists() && oldFile.isFile()) {
+                    boolean deleted = oldFile.delete();
+                    if (!deleted) {
+                        throw new RuntimeException(
+                                "Deleting media with path " + oldFile.getAbsolutePath() + " has failed"
+                        );
+                    }
+                }
+            }
+            String mediaPath = handleMedia(media);
             updated.setMedia(mediaPath);
         }
         return exerciseRepository.save(updated);
     }
 
-    private String handleMedia(MultipartFile media, String mediaName) throws SecurityException {
+    private String handleMedia(MultipartFile media) throws SecurityException {
         try {
             String depositPath = "uploads/";
             File depositFolder = new File(depositPath);
@@ -71,8 +83,8 @@ public class ExerciseServiceImpl implements ExerciseService {
             }
             Objects.requireNonNull(media.getOriginalFilename());
             String extension = media.getOriginalFilename().substring(media.getOriginalFilename().lastIndexOf("."));
-            String safeName = mediaName.replaceAll("[^a-zA-Z0-9\\-_]", "_").toLowerCase();
-            String mediaPath = depositPath + safeName + extension;
+            String mediaName = UUID.randomUUID().toString().replace("-", "");
+            String mediaPath = depositPath + mediaName + extension;
             Files.write(Paths.get(mediaPath), media.getBytes());
             return mediaPath;
         } catch (IOException e) {
