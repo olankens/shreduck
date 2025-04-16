@@ -11,10 +11,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/")
 @RequiredArgsConstructor
@@ -26,7 +23,7 @@ public class AuthController {
 
     @PreAuthorize("isAnonymous()")
     @PostMapping("/login")
-    public ResponseEntity<AuthTokenDto> login(@RequestBody @Valid AuthLoginForm form) {
+    public ResponseEntity<AuthTokenDto> login(@RequestPart @Valid AuthLoginForm form) {
         Member member = authService.login(form.pseudo(), form.password());
         String token = jwtUtil.generateToken(member);
         AuthSessionDto authSessionDto = AuthSessionDto.fromMember(member);
@@ -36,7 +33,7 @@ public class AuthController {
 
     @PreAuthorize("isAnonymous()")
     @PostMapping("/register")
-    public ResponseEntity<Void> register(@RequestBody @Valid AuthRegisterForm form) {
+    public ResponseEntity<Void> register(@RequestPart @Valid AuthRegisterForm form) {
         authService.register(form.toMember());
         return ResponseEntity.noContent().build();
     }
