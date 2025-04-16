@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ExerciseService {
 
-    Exercise create(Exercise exercise, MultipartFile media);
+    Exercise create(Exercise exercise, MultipartFile file);
 
     Exercise detail(Long id);
 
@@ -15,6 +15,6 @@ public interface ExerciseService {
 
     List<Exercise> filter(String query);
 
-    Exercise update(Long id, Exercise exercise, MultipartFile media);
+    Exercise update(Long id, Exercise exercise, MultipartFile file);
 
 }

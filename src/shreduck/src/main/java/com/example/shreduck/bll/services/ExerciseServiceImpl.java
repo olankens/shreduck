@@ -22,9 +22,9 @@ public class ExerciseServiceImpl implements ExerciseService {
     private final ExerciseRepository exerciseRepository;
 
     @Override
-    public Exercise create(Exercise exercise, MultipartFile media) {
-        if (media != null && !media.isEmpty()) {
-            String mediaPath = handleMedia(media);
+    public Exercise create(Exercise exercise, MultipartFile file) {
+        if (file != null && !file.isEmpty()) {
+            String mediaPath = handleFile(file);
             exercise.setMedia(mediaPath);
         }
         return exerciseRepository.save(exercise);
@@ -49,14 +49,14 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public Exercise update(Long id, Exercise exercise, MultipartFile media) {
+    public Exercise update(Long id, Exercise exercise, MultipartFile file) {
         Exercise updated = exerciseRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Exercise with id " + id + " not found")
         );
         updated.setName(exercise.getName());
         updated.setDescription(exercise.getDescription());
         updated.setExerciseTargets(exercise.getExerciseTargets());
-        if (media != null && !media.isEmpty()) {
+        if (file != null && !file.isEmpty()) {
             if (updated.getMedia() != null) {
                 File oldFile = new File(updated.getMedia());
                 if (oldFile.exists() && oldFile.isFile()) {
@@ -68,24 +68,24 @@ public class ExerciseServiceImpl implements ExerciseService {
                     }
                 }
             }
-            String mediaPath = handleMedia(media);
+            String mediaPath = handleFile(file);
             updated.setMedia(mediaPath);
         }
         return exerciseRepository.save(updated);
     }
 
-    private String handleMedia(MultipartFile media) throws SecurityException {
+    private String handleFile(MultipartFile file) throws SecurityException {
         try {
             String depositPath = "uploads/";
             File depositFolder = new File(depositPath);
             if (!depositFolder.exists() && !depositFolder.mkdirs()) {
                 throw new RuntimeException("Creating upload folder has failed");
             }
-            Objects.requireNonNull(media.getOriginalFilename());
-            String extension = media.getOriginalFilename().substring(media.getOriginalFilename().lastIndexOf("."));
+            Objects.requireNonNull(file.getOriginalFilename());
+            String extension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
             String mediaName = UUID.randomUUID().toString().replace("-", "");
             String mediaPath = depositPath + mediaName + extension;
-            Files.write(Paths.get(mediaPath), media.getBytes());
+            Files.write(Paths.get(mediaPath), file.getBytes());
             return mediaPath;
         } catch (IOException e) {
             throw new RuntimeException("Handling media file has failed", e);
