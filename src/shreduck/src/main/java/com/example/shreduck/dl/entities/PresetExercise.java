@@ -4,14 +4,16 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @AllArgsConstructor
+@EqualsAndHashCode(of = {"id"})
 @Builder(toBuilder = true)
 @Getter
 @NoArgsConstructor
 @Setter
+@ToString
 @Entity
 public class PresetExercise {
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "exercise_id")
     private Exercise exercise;
 
@@ -22,7 +24,7 @@ public class PresetExercise {
     @Column(nullable = false)
     private int position;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "preset_id")
     private Preset preset;
 

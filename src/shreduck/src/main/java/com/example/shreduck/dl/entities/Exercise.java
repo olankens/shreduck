@@ -7,10 +7,12 @@ import lombok.*;
 import java.util.List;
 
 @AllArgsConstructor
+@EqualsAndHashCode(of = {"id"})
 @Builder(toBuilder = true)
 @Getter
 @NoArgsConstructor
 @Setter
+@ToString
 @Entity
 public class Exercise {
 
