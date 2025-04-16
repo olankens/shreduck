@@ -8,21 +8,21 @@ import java.util.List;
 
 @Builder
 public record ExerciseDto(
-        Long id,
-        String name,
         String description,
         List<ExerciseTarget> exerciseTargets,
-        String media
+        Long id,
+        String media,
+        String name
 ) {
 
     public static ExerciseDto fromExercise(Exercise exercise) {
         return ExerciseDto
                 .builder()
-                .id(exercise.getId())
-                .name(exercise.getName())
                 .description(exercise.getDescription())
                 .exerciseTargets(exercise.getExerciseTargets())
+                .id(exercise.getId())
                 .media(exercise.getMedia())
+                .name(exercise.getName())
                 .build();
     }
 

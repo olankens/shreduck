@@ -7,18 +7,18 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
 public record ExerciseForm(
-        @NotBlank String name,
         @NotBlank String description,
-        List<ExerciseTarget> exerciseTargets
+        List<ExerciseTarget> exerciseTargets,
+        @NotBlank String name
 ) {
 
     public Exercise toExercise() {
         return Exercise
                 .builder()
-                .name(name)
                 .description(description)
                 .exerciseTargets(exerciseTargets)
                 .media(null)
+                .name(name)
                 .build();
     }
 
