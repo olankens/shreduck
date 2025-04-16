@@ -1,12 +1,13 @@
 package com.example.shreduck.bll.services;
 
 import com.example.shreduck.dl.entities.Exercise;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface ExerciseService {
 
-    Exercise create(Exercise exercise);
+    Exercise create(Exercise exercise, MultipartFile media);
 
     Exercise detail(Long id);
 
@@ -14,6 +15,6 @@ public interface ExerciseService {
 
     List<Exercise> filter(String query);
 
-    Exercise update(Long id, Exercise exercise);
+    Exercise update(Long id, Exercise exercise, MultipartFile media);
 
 }

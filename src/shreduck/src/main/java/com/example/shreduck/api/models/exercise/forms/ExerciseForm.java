@@ -9,8 +9,7 @@ import java.util.List;
 public record ExerciseForm(
         @NotBlank String name,
         @NotBlank String description,
-        List<ExerciseTarget> exerciseTargets,
-        @NotBlank String media
+        List<ExerciseTarget> exerciseTargets
 ) {
 
     public Exercise toExercise() {
@@ -19,7 +18,7 @@ public record ExerciseForm(
                 .name(name)
                 .description(description)
                 .exerciseTargets(exerciseTargets)
-                .media(media)
+                .media(null)
                 .build();
     }
 

@@ -35,7 +35,7 @@ class ExerciseServiceImplTest {
                 .id(1L)
                 .build();
         when(exerciseRepository.save(payload)).thenReturn(mocking);
-        Exercise created = exerciseService.create(payload);
+        Exercise created = exerciseService.create(payload, null);
         assertEquals(0, created.getExerciseTargets().size());
         assertTrue(created.getId() > 0);
     }
@@ -53,7 +53,7 @@ class ExerciseServiceImplTest {
                 .id(1L)
                 .build();
         when(exerciseRepository.save(payload)).thenReturn(mocking);
-        Exercise created = exerciseService.create(payload);
+        Exercise created = exerciseService.create(payload, null);
         assertEquals(2, created.getExerciseTargets().size());
         assertTrue(created.getId() > 0);
     }

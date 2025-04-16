@@ -6,9 +6,20 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 public class OpenApiConfig {
+
+    public OpenApiConfig(MappingJackson2HttpMessageConverter converter) {
+        List<MediaType> supportMediaTypes = new ArrayList<>(converter.getSupportedMediaTypes());
+        supportMediaTypes.add(new MediaType("application", "octet-stream"));
+        converter.setSupportedMediaTypes(supportMediaTypes);
+    }
 
     @Bean
     public OpenAPI openAPI() {

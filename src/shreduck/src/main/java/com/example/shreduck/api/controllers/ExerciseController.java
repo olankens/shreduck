@@ -6,9 +6,11 @@ import com.example.shreduck.bll.services.ExerciseService;
 import com.example.shreduck.dl.entities.Exercise;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,10 +21,13 @@ public class ExerciseController {
 
     private final ExerciseService exerciseService;
 
-    @PostMapping("")
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public ResponseEntity<ExerciseDto> create(@RequestBody @Valid ExerciseForm form) {
-        Exercise exercise = exerciseService.create(form.toExercise());
+    public ResponseEntity<ExerciseDto> create(
+            @RequestPart("form") @Valid ExerciseForm form,
+            @RequestPart(value = "media", required = false) MultipartFile file
+    ) {
+        Exercise exercise = exerciseService.create(form.toExercise(), file);
         return ResponseEntity.ok(ExerciseDto.fromExercise(exercise));
     }
 
@@ -33,7 +38,7 @@ public class ExerciseController {
         return ResponseEntity.ok(ExerciseDto.fromExercise(exercise));
     }
 
-    @GetMapping("")
+    @GetMapping
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MEMBER')")
     public ResponseEntity<List<ExerciseDto>> export(@RequestParam(required = false) String query) {
         List<Exercise> exerciseList = (query == null || query.isBlank())
@@ -45,13 +50,14 @@ public class ExerciseController {
         return ResponseEntity.ok(exerciseDtoList);
     }
 
-    @PutMapping("{id}")
+    @PutMapping(value = "{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<ExerciseDto> update(
             @PathVariable Long id,
-            @RequestBody @Valid ExerciseForm form
+            @RequestPart("form") @Valid ExerciseForm form,
+            @RequestPart(value = "media", required = false) MultipartFile file
     ) {
-        Exercise exercise = exerciseService.update(id, form.toExercise());
+        Exercise exercise = exerciseService.update(id, form.toExercise(), file);
         return ResponseEntity.ok(ExerciseDto.fromExercise(exercise));
     }
 
