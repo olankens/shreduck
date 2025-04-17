@@ -77,7 +77,7 @@ public class PresetController {
         List<UnlockablePresetDto> dtoList = presets.stream()
                 .map(p -> new UnlockablePresetDto(
                         PresetDto.fromPreset(p),
-                        p.getUnlockedByMembers().contains(current)
+                        p.getUnlockedMembers().contains(current)
                 ))
                 .toList();
         return ResponseEntity.ok(dtoList);

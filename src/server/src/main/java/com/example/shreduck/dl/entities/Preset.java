@@ -37,6 +37,6 @@ public class Preset {
     private PresetType presetType;
 
     @ManyToMany(mappedBy = "unlockedPresets")
-    private List<Member> unlockedByMembers = new ArrayList<>();
+    private List<Member> unlockedMembers = new ArrayList<>();
 
 }
