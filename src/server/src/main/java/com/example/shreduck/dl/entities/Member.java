@@ -41,6 +41,14 @@ public class Member implements UserDetails {
     @Column(nullable = false, unique = true)
     private String pseudo;
 
+    @JoinTable(
+            name = "unlocked_preset",
+            joinColumns = @JoinColumn(name = "member_id"),
+            inverseJoinColumns = @JoinColumn(name = "preset_id")
+    )
+    @ManyToMany
+    private List<Preset> unlockedPresets = new ArrayList<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.memberRole.toString()));

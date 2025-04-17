@@ -4,6 +4,7 @@ import com.example.shreduck.dl.enums.PresetType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -34,5 +35,8 @@ public class Preset {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private PresetType presetType;
+
+    @ManyToMany(mappedBy = "unlockedPresets")
+    private List<Member> unlockedByMembers = new ArrayList<>();
 
 }

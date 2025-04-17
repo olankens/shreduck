@@ -2,6 +2,7 @@ package com.example.shreduck.bll.services;
 
 import com.example.shreduck.api.models.preset.forms.PresetForm;
 import com.example.shreduck.dal.repositories.ExerciseRepository;
+import com.example.shreduck.dal.repositories.MemberRepository;
 import com.example.shreduck.dal.repositories.PresetExerciseRepository;
 import com.example.shreduck.dal.repositories.PresetRepository;
 import com.example.shreduck.dl.entities.Member;
@@ -20,6 +21,7 @@ import java.util.List;
 public class PresetServiceImpl implements PresetService {
 
     private final ExerciseRepository exerciseRepository;
+    private final MemberRepository memberRepository;
     private final PresetExerciseRepository presetExerciseRepository;
     private final PresetRepository presetRepository;
 
@@ -49,8 +51,34 @@ public class PresetServiceImpl implements PresetService {
     }
 
     @Override
+    public Preset detailUnlockable(Long id) {
+        Preset preset = presetRepository.findById(id).orElseThrow();
+        if (preset.getPresetType() == PresetType.FREE) {
+            throw new RuntimeException("Preset is free and doesn't require unlocking");
+        }
+        return preset;
+    }
+
+    @Override
     public List<Preset> export(Member current) {
         return presetRepository.findAllByMember(current);
+    }
+
+    @Override
+    public List<Preset> exportUnlockable() {
+        return presetRepository.findByPresetTypeIn(List.of(PresetType.AD, PresetType.PAID));
+    }
+
+    @Override
+    public void unlock(Long id, Member current) {
+        Preset preset = presetRepository.findById(id).orElseThrow();
+        if (preset.getPresetType() == PresetType.FREE) {
+            throw new RuntimeException("Free presets do not need to be unlocked");
+        }
+        if (!current.getUnlockedPresets().contains(preset)) {
+            current.getUnlockedPresets().add(preset);
+            memberRepository.save(current);
+        }
     }
 
     @Override

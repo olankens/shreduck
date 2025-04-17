@@ -50,16 +50,38 @@ public class PresetController {
         return ResponseEntity.ok(PresetDto.fromPreset(preset));
     }
 
+    @GetMapping("/unlockable/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MEMBER')")
+    public ResponseEntity<PresetDto> detailUnlockable(@PathVariable Long id) {
+        Preset preset = presetService.detailUnlockable(id);
+        return ResponseEntity.ok(PresetDto.fromPreset(preset));
+    }
+
     @GetMapping
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MEMBER')")
-    public ResponseEntity<List<PresetDto>> export(
-            @AuthenticationPrincipal Member current
-    ) {
+    public ResponseEntity<List<PresetDto>> export(@AuthenticationPrincipal Member current) {
         List<Preset> presetList = presetService.export(current);
         List<PresetDto> presetDtoList = presetList.stream()
                 .map(PresetDto::fromPreset)
                 .toList();
         return ResponseEntity.ok(presetDtoList);
+    }
+
+    @GetMapping("/unlockable")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MEMBER')")
+    public ResponseEntity<List<PresetDto>> exportUnlockable() {
+        List<Preset> unlockable = presetService.exportUnlockable();
+        return ResponseEntity.ok(unlockable.stream().map(PresetDto::fromPreset).toList());
+    }
+
+    @PostMapping("/{id}/unlock")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MEMBER')")
+    public ResponseEntity<Void> unlock(
+            @PathVariable Long id,
+            @AuthenticationPrincipal Member current
+    ) {
+        presetService.unlock(id, current);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("{id}")

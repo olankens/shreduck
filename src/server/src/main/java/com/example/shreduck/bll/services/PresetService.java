@@ -14,7 +14,13 @@ public interface PresetService {
 
     Preset detail(Long id, Member current);
 
+    Preset detailUnlockable(Long id);
+
     List<Preset> export(Member current);
+
+    List<Preset> exportUnlockable();
+
+    void unlock(Long id, Member current);
 
     Preset update(Long id, PresetForm form, Member current);
 
