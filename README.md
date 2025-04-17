@@ -10,20 +10,24 @@ Spring backend with Ionic mobile application to create your own personalized wor
 
 # <samp>GUIDANCE</samp>
 
-### Launch Spring
+### Debug server
 
-```shell
-...
+```
+idea src/server
 ```
 
-### Launch Android
+### Debug mobile
 
 ```shell
-...
-```
+# For Android
+cd src/mobile
+npx cap copy android
+npx cap sync android
+npx cap open android
 
-### Launch iOS
-
-```shell
-...
+# For iOS
+cd src/mobile
+npx cap copy ios
+npx cap sync ios
+npx cap open ios
 ```
