@@ -1,14 +1,18 @@
 # <samp>OVERVIEW</samp>
 
-Spring backend with Ionic mobile application to create own personalized workouts.
+Fullstack platform to create personalized workouts.
 
-## Mobile
+### <samp>GALLERY</samp>
 
 <img src="assets/img1.png" width="23.875%"/><img src="assets/img0.png" width="1.5%"/><img src="assets/img2.png" width="23.875%"/><img src="assets/img0.png" width="1.5%"/><img src="assets/img3.png" width="23.875%"/><img src="assets/img0.png" width="1.5%"/><img src="assets/img4.png" width="23.875%"/>
 
-## Schema
+### <samp>DIAGRAM</samp>
 
-<img src="assets/img5.svg" width="100%"/>
+<img src="assets/img5.png" width="100%"/>
+
+# <samp>FEEDBACK</samp>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique ullamcorper sem, quis volutpat dolor dictum non. In accumsan tincidunt dui, et suscipit eros placerat vel.
 
 # <samp>FEATURES</samp>
 
@@ -16,13 +20,13 @@ Spring backend with Ionic mobile application to create own personalized workouts
 
 # <samp>GUIDANCE</samp>
 
-### Debug server
+### <samp>DEBUG SERVER</samp>
 
 ```
 idea src/server
 ```
 
-### Debug mobile
+### <samp>DEBUG MOBILE</samp>
 
 ```shell
 # For Android
