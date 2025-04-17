@@ -1,6 +1,7 @@
 package com.example.shreduck.api.controllers;
 
 import com.example.shreduck.api.models.preset.dtos.PresetDto;
+import com.example.shreduck.api.models.preset.dtos.UnlockablePresetDto;
 import com.example.shreduck.api.models.preset.forms.PresetForm;
 import com.example.shreduck.bll.services.PresetService;
 import com.example.shreduck.dl.entities.Member;
@@ -69,9 +70,17 @@ public class PresetController {
 
     @GetMapping("/unlockable")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MEMBER')")
-    public ResponseEntity<List<PresetDto>> exportUnlockable() {
-        List<Preset> unlockable = presetService.exportUnlockable();
-        return ResponseEntity.ok(unlockable.stream().map(PresetDto::fromPreset).toList());
+    public ResponseEntity<List<UnlockablePresetDto>> exportUnlockable(
+            @AuthenticationPrincipal Member current
+    ) {
+        List<Preset> presets = presetService.exportUnlockable();
+        List<UnlockablePresetDto> dtoList = presets.stream()
+                .map(p -> new UnlockablePresetDto(
+                        PresetDto.fromPreset(p),
+                        p.getUnlockedByMembers().contains(current)
+                ))
+                .toList();
+        return ResponseEntity.ok(dtoList);
     }
 
     @PostMapping("/{id}/unlock")

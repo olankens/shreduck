@@ -46,7 +46,7 @@ public class Member implements UserDetails {
             joinColumns = @JoinColumn(name = "member_id"),
             inverseJoinColumns = @JoinColumn(name = "preset_id")
     )
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Preset> unlockedPresets = new ArrayList<>();
 
     @Override
