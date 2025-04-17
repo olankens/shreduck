@@ -26,5 +26,6 @@ spring:
 
 springdoc:
   swagger-ui:
-    operationsSorter: alpha
+    operationsSorter: method
     path: /
+    tags-sorter: alpha
