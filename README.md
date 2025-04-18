@@ -1,14 +1,8 @@
 # <samp>OVERVIEW</samp>
 
-Fullstack platform to create personalized workouts.
-
-### <samp>GALLERY</samp>
+Platform to create personalized workouts.
 
 <img src="assets/img1.png" width="23.875%"/><img src="assets/img0.png" width="1.5%"/><img src="assets/img2.png" width="23.875%"/><img src="assets/img0.png" width="1.5%"/><img src="assets/img3.png" width="23.875%"/><img src="assets/img0.png" width="1.5%"/><img src="assets/img4.png" width="23.875%"/>
-
-### <samp>DIAGRAM</samp>
-
-<img src="assets/img5.png" width="100%"/>
 
 # <samp>FEEDBACK</samp>
 
@@ -20,13 +14,17 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique u
 
 # <samp>GUIDANCE</samp>
 
-### <samp>DEBUG SERVER</samp>
+### ER diagram
+
+<img src="assets/img5.png" width="100%"/>
+
+### Debug server
 
 ```
 idea src/server
 ```
 
-### <samp>DEBUG MOBILE</samp>
+### Debug mobile
 
 ```shell
 # For Android
