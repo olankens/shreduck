@@ -1,0 +1,709 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "paths": {
+    "/preset/{id}": {
+      "get": {
+        "tags": [
+          "preset-controller"
+        ],
+        "operationId": "detail",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresetDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "preset-controller"
+        ],
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PresetForm"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresetDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "preset-controller"
+        ],
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/exercise/{id}": {
+      "get": {
+        "tags": [
+          "exercise-controller"
+        ],
+        "operationId": "detail_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExerciseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "exercise-controller"
+        ],
+        "operationId": "update_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "form": {
+                    "$ref": "#/components/schemas/ExerciseForm"
+                  },
+                  "media": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "form"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExerciseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": [
+          "auth-controller"
+        ],
+        "operationId": "register",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "form": {
+                    "$ref": "#/components/schemas/AuthRegisterForm"
+                  }
+                },
+                "required": [
+                  "form"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/preset": {
+      "get": {
+        "tags": [
+          "preset-controller"
+        ],
+        "operationId": "export",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PresetDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "preset-controller"
+        ],
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "form": {
+                    "$ref": "#/components/schemas/PresetForm"
+                  }
+                },
+                "required": [
+                  "form"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresetDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/preset/{id}/unlock": {
+      "post": {
+        "tags": [
+          "preset-controller"
+        ],
+        "operationId": "unlock",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "auth-controller"
+        ],
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "form": {
+                    "$ref": "#/components/schemas/AuthLoginForm"
+                  }
+                },
+                "required": [
+                  "form"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTokenDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exercise": {
+      "get": {
+        "tags": [
+          "exercise-controller"
+        ],
+        "operationId": "export_1",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExerciseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "exercise-controller"
+        ],
+        "operationId": "create_1",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "form": {
+                    "$ref": "#/components/schemas/ExerciseForm"
+                  },
+                  "media": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "form"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExerciseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/preset/unlockable": {
+      "get": {
+        "tags": [
+          "preset-controller"
+        ],
+        "operationId": "exportUnlockable",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UnlockablePresetDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/preset/unlockable/{id}": {
+      "get": {
+        "tags": [
+          "preset-controller"
+        ],
+        "operationId": "detailUnlockable",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresetDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PresetExerciseForm": {
+        "type": "object",
+        "properties": {
+          "exerciseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "position": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PresetForm": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "presetExercises": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PresetExerciseForm"
+            }
+          },
+          "presetType": {
+            "type": "string",
+            "enum": [
+              "AD",
+              "FREE",
+              "PAID"
+            ]
+          }
+        },
+        "required": [
+          "presetType"
+        ]
+      },
+      "ExerciseDto": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "exerciseTargets": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ABS",
+                "BICEPS",
+                "CALVES",
+                "CHEST",
+                "FOREARMS",
+                "GLUTES",
+                "HAMSTRINGS",
+                "LATS",
+                "LOWERBACK",
+                "OBLIQUES",
+                "QUADS",
+                "SHOULDERS",
+                "SPECIALS",
+                "TRAPS",
+                "TRICEPS"
+              ]
+            }
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "media": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "PresetDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "memberId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "presetExercises": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PresetExerciseDto"
+            }
+          },
+          "presetType": {
+            "type": "string",
+            "enum": [
+              "AD",
+              "FREE",
+              "PAID"
+            ]
+          }
+        }
+      },
+      "PresetExerciseDto": {
+        "type": "object",
+        "properties": {
+          "exercise": {
+            "$ref": "#/components/schemas/ExerciseDto"
+          },
+          "position": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ExerciseForm": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "exerciseTargets": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ABS",
+                "BICEPS",
+                "CALVES",
+                "CHEST",
+                "FOREARMS",
+                "GLUTES",
+                "HAMSTRINGS",
+                "LATS",
+                "LOWERBACK",
+                "OBLIQUES",
+                "QUADS",
+                "SHOULDERS",
+                "SPECIALS",
+                "TRAPS",
+                "TRICEPS"
+              ]
+            }
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "AuthRegisterForm": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "minLength": 1
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pseudo": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "AuthLoginForm": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pseudo": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "AuthSessionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "memberRole": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "MEMBER"
+            ]
+          },
+          "pseudo": {
+            "type": "string"
+          }
+        }
+      },
+      "AuthTokenDto": {
+        "type": "object",
+        "properties": {
+          "member": {
+            "$ref": "#/components/schemas/AuthSessionDto"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "UnlockablePresetDto": {
+        "type": "object",
+        "properties": {
+          "preset": {
+            "$ref": "#/components/schemas/PresetDto"
+          },
+          "unlocked": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "name": "BearerAuth",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

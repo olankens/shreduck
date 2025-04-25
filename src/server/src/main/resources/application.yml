@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: shreduck
+  cache:
+    type: caffeine
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shreduck
+    username: master
+    password:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+springdoc:
+  swagger-ui:
+    operationsSorter: method
+    path: /
+    tags-sorter: alpha
