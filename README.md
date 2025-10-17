@@ -1,3 +1,5 @@
+![](.assets/social.png)
+
 # <samp>OVERVIEW</samp>
 
 Shreduck is a training platform where users can register and create their own workouts using a library of existing exercises. It features a premium system where ready-made workouts can be unlocked by watching ads.
@@ -8,12 +10,11 @@ The application is a fullstack monorepo combining a Spring Boot REST API backend
 
 <img src=".assets/img1.png" width="23.5%"/><img src=".assets/1x1.png" width="2%"/><img src=".assets/img2.png" width="23.5%"/><img src=".assets/1x1.png" width="2%"/><img src=".assets/img3.gif" width="23.5%"/><img src=".assets/1x1.png" width="2%"/><img src=".assets/img4.png" width="23.5%"/>
 
-
-# <samp>GUIDANCE</samp>
-
 ### ER Diagram
 
-<img src=".assets/erd.png" width="100%"/>
+![](.assets/erd.png)
+
+# <samp>GUIDANCE</samp>
 
 ### Debug Server
 
