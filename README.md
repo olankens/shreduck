@@ -6,7 +6,7 @@ The application is a fullstack monorepo combining a Spring Boot REST API backend
 
 ### Mobile Application
 
-<img src=".assets/img1.png" width="24.0625%"/><img src=".assets/1x1.png" width="1.25%"/><img src=".assets/img2.png" width="24.0625%"/><img src=".assets/1x1.png" width="1.25%"/><img src=".assets/img3.gif" width="24.0625%"/><img src=".assets/1x1.png" width="1.25%"/><img src=".assets/img4.png" width="23.5%"/>
+<img src=".assets/img1.png" width="24.0625%"/><img src=".assets/1x1.png" width="1.25%"/><img src=".assets/img2.png" width="24.0625%"/><img src=".assets/1x1.png" width="1.25%"/><img src=".assets/img3.gif" width="24.0625%"/><img src=".assets/1x1.png" width="1.25%"/><img src=".assets/img4.png" width="24.0625%"/>
 
 ### ER Diagram
 
