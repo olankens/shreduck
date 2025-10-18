@@ -1,5 +1,3 @@
-![](.assets/social.png)
-
 # <samp>OVERVIEW</samp>
 
 Shreduck is a training platform where users can register and create their own workouts using a library of existing exercises. It features a premium system where ready-made workouts can be unlocked by watching ads.
