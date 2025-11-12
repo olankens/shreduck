@@ -1,7 +1,7 @@
 <hr>
 
 <div align="center">
-  <img src=".assets/ico.svg" width="132">
+  <img src=".assets/icon.svg" width="132">
   <h1><samp>SHREDUCK</samp></h1>
   <p>Shreduck is a training platform where users can register and create their own workouts using a library of existing exercises. It features a premium system where ready-made workouts can be unlocked by watching ads. The application is a fullstack monorepo combining a Spring Boot REST API backend with an Ionic and Angular frontend, it delivers a responsive, cross-platform experience for both web and mobile users.</p>
 </div>
