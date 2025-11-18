@@ -16,6 +16,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed diam ex, dignissim 
 
 ### Authentication Flow
 
-<img src="https://lipsum.app/308x640/333/fff" width="24.0625%"/><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="1.25%"/><img src="https://lipsum.app/308x640/333/fff" width="24.0625%"/><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="1.25%"/><img src="https://lipsum.app/308x640/333/fff" width="24.0625%"/><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="1.25%"/><img src="https://lipsum.app/308x640/333/fff" width="24.0625%"/>
+<img src="https://lipsum.app/308x640/333/fff" width="24.0625%"/><img src=".assets/1x1.gif" width="1.25%"/><img src="https://lipsum.app/308x640/333/fff" width="24.0625%"/><img src=".assets/1x1.gif" width="1.25%"/><img src="https://lipsum.app/308x640/333/fff" width="24.0625%"/><img src=".assets/1x1.gif" width="1.25%"/><img src="https://lipsum.app/308x640/333/fff" width="24.0625%"/>
 
 <hr>
