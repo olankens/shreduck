@@ -19,3 +19,9 @@
 <img src=".assets/welcome.png" width="24.0625%"/><img src=".assets/1x1.gif" width="1.25%"/><img src=".assets/login.png" width="24.0625%"/><img src=".assets/1x1.gif" width="1.25%"/><img src=".assets/register.png" width="24.0625%"/><img src=".assets/1x1.gif" width="1.25%"/><img src=".assets/empty.png" width="24.0625%"/>
 
 <hr>
+
+### Workout Creation
+
+<img src=".assets/empty.png" width="24.0625%"/><img src=".assets/1x1.gif" width="1.25%"/><img src=".assets/empty.png" width="24.0625%"/><img src=".assets/1x1.gif" width="1.25%"/><img src=".assets/empty.png" width="24.0625%"/><img src=".assets/1x1.gif" width="1.25%"/><img src=".assets/empty.png" width="24.0625%"/>
+
+<hr>
