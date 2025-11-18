@@ -10,7 +10,7 @@
 
 ### Backend Diagram
 
-![](https://lipsum.app/1280x640/333/fff)
+![](.assets/preview.png)
 
 <hr>
 
