@@ -1,10 +1,10 @@
 <hr>
 
-# <samp>SHREDUCK</samp>
-
-### Introduction
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed diam ex, dignissim id pretium quis, tempor vel mi. In hac habitasse platea dictumst. Aenean accumsan vitae sapien vitae vestibulum. Fusce non mattis tellus, id placerat sapien. Nulla commodo placerat felis, eu molestie lectus lacinia sed.
+<div align="center">
+  <img src=".assets/icon.svg" width="132">
+  <h1><samp>SHREDUCK</samp></h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In egestas luctus neque, a interdum quam vestibulum eget. Suspendisse magna diam, finibus rutrum feugiat non, tincidunt id purus. Donec felis nunc, finibus in tincidunt in, tincidunt at nulla. Nam elementum velit ut lectus vulputate, non accumsan est auctor.</p>
+</div>
 
 <hr>
 
