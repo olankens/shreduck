@@ -1,5 +1,3 @@
-<hr>
-
 <div align="center">
     <picture>
         <source media="(prefers-color-scheme: dark)" srcset=".assets/icon-dark.svg">
@@ -38,5 +36,3 @@
 ### Workout Execution
 
 <picture><source media="(prefers-color-scheme: dark)" srcset=".assets/empty-dark.svg"><img src=".assets/empty.svg" width="24.0625%"></picture><img src=".assets/1x1.gif" width="1.25%"/><picture><source media="(prefers-color-scheme: dark)" srcset=".assets/empty-dark.svg"><img src=".assets/empty.svg" width="24.0625%"></picture><img src=".assets/1x1.gif" width="1.25%"/><picture><source media="(prefers-color-scheme: dark)" srcset=".assets/empty-dark.svg"><img src=".assets/empty.svg" width="24.0625%"></picture><img src=".assets/1x1.gif" width="1.25%"/><picture><source media="(prefers-color-scheme: dark)" srcset=".assets/empty-dark.svg"><img src=".assets/empty.svg" width="24.0625%"></picture>
-
-<hr>
