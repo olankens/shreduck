@@ -4,7 +4,7 @@
         <img src=".assets/icon.svg" height="132">
     </picture>
     <h1><samp>SHREDUCK</samp></h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In egestas luctus neque, a interdum quam vestibulum eget. Suspendisse magna diam, finibus rutrum feugiat non, tincidunt id purus. Donec felis nunc, finibus in tincidunt in, tincidunt at nulla. Nam elementum velit ut lectus vulputate, non accumsan est auctor.</p>
+    <p>Shreduck is a training platform where users can register and create their own workouts using a library of existing exercises. It features a premium system where ready-made workouts can be unlocked by watching ads.</p>
 </div>
 
 ---
