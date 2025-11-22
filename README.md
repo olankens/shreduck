@@ -9,6 +9,10 @@
 
 ---
 
+<picture><source media="(prefers-color-scheme: dark)" srcset=".assets/erd-dark.png"><img src=".assets/erd.png" width="100%"></picture>
+
+---
+
 <h3 align="center">Onboarding Flow</h3>
 
 <picture><source media="(prefers-color-scheme: dark)" srcset=".assets/phone-dark.svg"><img src=".assets/phone.svg" width="24.0625%"></picture><img src=".assets/1x1.gif" width="1.25%"/><picture><source media="(prefers-color-scheme: dark)" srcset=".assets/phone-dark.svg"><img src=".assets/phone.svg" width="24.0625%"></picture><img src=".assets/1x1.gif" width="1.25%"/><picture><source media="(prefers-color-scheme: dark)" srcset=".assets/phone-dark.svg"><img src=".assets/phone.svg" width="24.0625%"></picture><img src=".assets/1x1.gif" width="1.25%"/><picture><source media="(prefers-color-scheme: dark)" srcset=".assets/phone-dark.svg"><img src=".assets/phone.svg" width="24.0625%"></picture>
