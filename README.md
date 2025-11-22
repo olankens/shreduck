@@ -9,6 +9,8 @@
 
 ---
 
+<h3 align="center">ER Diagram</h3>
+
 <picture><source media="(prefers-color-scheme: dark)" srcset=".assets/erd-dark.png"><img src=".assets/erd.png" width="100%"></picture>
 
 ---
